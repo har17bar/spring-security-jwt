@@ -1,6 +1,6 @@
 package com.codulate.auth.filters;
 
-import com.codulate.auth.MyUserDetailsService;
+import com.codulate.auth.AuthService;
 import com.codulate.auth.util.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,11 +18,11 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    private MyUserDetailsService userDetailsService;
+    private AuthService userDetailsAuthService;
     private JwtUtil jwtUtil;
 
-    public JwtRequestFilter(MyUserDetailsService userDetailsService, JwtUtil jwtUtil) {
-        this.userDetailsService = userDetailsService;
+    public JwtRequestFilter(AuthService userDetailsAuthService, JwtUtil jwtUtil) {
+        this.userDetailsAuthService = userDetailsAuthService;
         this.jwtUtil = jwtUtil;
     }
 
@@ -43,7 +43,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = this.userDetailsAuthService.loadUserByUsername(username);
 
             if (jwtUtil.validateToken(jwt, userDetails)) {
 

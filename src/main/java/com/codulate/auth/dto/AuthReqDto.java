@@ -1,8 +1,8 @@
-package com.codulate.auth.models;
+package com.codulate.auth.dto;
 
 import java.io.Serializable;
 
-public class AuthenticationRequest implements Serializable {
+public class AuthReqDto implements Serializable {
 
 
     private String username;
@@ -25,12 +25,12 @@ public class AuthenticationRequest implements Serializable {
     }
 
     //need default constructor for JSON Parsing
-    public AuthenticationRequest()
+    public AuthReqDto()
     {
 
     }
 
-    public AuthenticationRequest(String username, String password) {
+    public AuthReqDto(String username, String password) {
         this.setUsername(username);
         this.setPassword(password);
     }
