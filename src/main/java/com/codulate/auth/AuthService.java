@@ -2,7 +2,6 @@ package com.codulate.auth;
 
 import com.codulate.auth.models.User;
 import com.codulate.auth.dao.UserDao;
-import com.codulate.auth.dto.UserDTO;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,7 +34,7 @@ public class AuthService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
     }
 
-    public User save(UserDTO user) {
+    public User save(User user) {
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(user.getPassword());

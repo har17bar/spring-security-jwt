@@ -1,6 +1,5 @@
 package com.codulate.auth;
 
-import com.codulate.auth.dto.UserDTO;
 import com.codulate.auth.models.User;
 import com.codulate.auth.dto.AuthReqDto;
 import com.codulate.auth.dto.AuthRespDto;
@@ -53,7 +52,7 @@ class AuthController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<?> registration(@RequestBody UserDTO user){
+    public ResponseEntity<?> registration(@RequestBody User user){
         User userFromDb = userDao.findByUsername(user.getUsername());
 
         if (userFromDb != null) {
